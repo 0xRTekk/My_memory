@@ -1,0 +1,19 @@
+{
+    "name": "vendor/memory",
+    "description": "Memory game",
+    "authors": [
+        {
+            "name": "Remitekky",
+            "email": "remitekky@hotmail.fr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "type": "project",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Memory\\": "src/",
+            "Memory\\Model\\": "src/model/"
+        }
+    }
+}
