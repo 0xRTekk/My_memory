@@ -20,9 +20,9 @@ class GameManager
     public function getList()
     {
         $games = [];
-        $query = $this->db->query('SELECT * FROM game ORDER BY time_played ASC');
+        $query = $this->db->query('SELECT g.id, g.start_date, g.time_played, u.nickname FROM memory.game g INNER JOIN memory.user u ON u.id = g.id_user ORDER BY time_played ASC');
         while ($data = $query->fetch(\PDO::FETCH_ASSOC)) {
-            $games[] = new Game($data);
+            $games[] = $data;
         }
         return $games;
     }
