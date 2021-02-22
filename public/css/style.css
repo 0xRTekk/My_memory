@@ -14,3 +14,14 @@
     border-radius: 10px;
     background-color: #dedede;
 }
+.lobby-wrapper .main-container {
+    display: flex;
+}
+.lobby-wrapper .main-container .general-best-game-times,
+.lobby-wrapper .main-container .user-best-game-times {
+    padding: 20px;
+    margin: 0 20px;
+}
+.lobby-wrapper .main-container .general-best-game-times {
+    flex-basis: 100%;
+}

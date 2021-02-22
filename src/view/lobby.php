@@ -20,37 +20,49 @@ ob_start();?>
     </div>
 </div>
 
-<div class="main-container">
-    <article class="general-best-game-times" style="border:1px solid black;">
-        <h2>Les meilleurs temps de tous les temps !</h2>
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Joueur</th>
-                    <th scope="col">Temps</th>
-                    <th scope="col">Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($game_list as $game) { ?>
+<div class="lobby-wrapper">
+    <div class="main-container">
+        <article class="general-best-game-times" style="border:1px solid black;">
+            <h2>Les meilleurs temps de tous les temps !</h2>
+            <table class="table table-striped table-hover">
+                <thead>
                     <tr>
-                        <th scope="row"><?=$game['id'];?></td>
-                        <td><?=$game['nickname'];?></td>
-                        <td><?=$game['time_played'];?></td>
-                        <td><?=$game['start_date'];?></td>
+                        <th scope="col">#</th>
+                        <th scope="col">Joueur</th>
+                        <th scope="col">Temps</th>
+                        <th scope="col">Date</th>
                     </tr>
-                <?php } ?>              
-            </tbody>
-        </table>
-    </article>
+                </thead>
+                <tbody>
+                    <?php foreach($game_list as $game) { ?>
+                        <tr>
+                            <th scope="row"><?=$game['id'];?></td>
+                            <td><?=$game['nickname'];?></td>
+                            <td><?=$game['time_played'];?></td>
+                            <td><?=$game['start_date'];?></td>
+                        </tr>
+                    <?php } ?>              
+                </tbody>
+            </table>
+        </article>
 
-    <aside class="user-best-game-times" style="border:1px solid red;">
-        <h2>Tes meilleurs temps (de tous les temps)</h2>
-    </aside>
-
-    <div class="button-section">
-        <button>JOUER</button>
+        <aside class="user-best-game-times" style="border:1px solid red;">
+            <h2>Tes meilleurs temps (de tous les temps)</h2>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Temps</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rempli en JS -->
+                </tbody>
+            </table>
+        </aside>
+    </div>
+    <div class="second-container">
+        <button type="button" class="btn btn-primary btn-lg" id="start-game-submit">JOUER</button>
     </div>
 </div>
 

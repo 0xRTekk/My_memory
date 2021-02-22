@@ -19,16 +19,23 @@ if (isset($_GET['action']) && $_GET['action'] == "connect") {
         //NON -> creer user
     $input_nickname = $_GET['input_nickname'];
     $user_controller = new UserController();
-
-    if (!$user_controller->existsAction($input_nickname)) {
-        echo json_encode('0');
+    $user = $user_controller->existsAction($input_nickname);
+    if (!$user) {
+        //Creation User
+        $user_controller->addAction($input_nickname);
+        $user_created = $user_controller->getLastInsertedACtion();
+        echo json_encode(array(
+            'user_id' => (int)$user_created->id(),
+            'nickname' => $user_created->nickname(),
+            'victories' => (int)$user_created->victories()
+        ));
     } else {
-        echo json_encode('1');
+        //Recup des dernieres Games du User
+        $games = $user_controller->getUserGamesAction($user['id']);
+        echo json_encode(array('games' => $games));
     }
-    
-    
 }
 if (isset($_GET['action']) && $_GET['action'] == "start-game") {
-    //Recupère le User 
-    //Envoi sur la page de jeu
+    //Recupère le User pour le save de la partie
+    //Ouverture d'une modale de jeu
 }

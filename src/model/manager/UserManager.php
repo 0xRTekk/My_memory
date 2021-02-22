@@ -2,6 +2,8 @@
 
 namespace Memory\Model\Manager;
 
+use Memory\Model\User;
+
 class UserManager 
 {
     private $db;
@@ -16,32 +18,38 @@ class UserManager
         $this->db = $db;
     }
 
-
-    public function exists($nickname)
+    public function exists(String $nickname)
     {
         $query = $this->db->query('SELECT id FROM memory.user WHERE nickname = "'.$nickname.'"');
-        $response = $query->fetch();
+        $response = $query->fetch(\PDO::FETCH_ASSOC);
         return $response;
     }
 
-    public function add()
+    public function add(String $nickname)
     {
         $query = $this->db->prepare('INSERT INTO user (nickname, victories) VALUES (:nickname, :victories)');
         $query->execute([
-            "nickname" => $this->nickname,
+            "nickname" => $nickname,
             "victories" => 0
         ]);
         $query->closeCursor();
+        return true;
     }
 
-    public function getGames()
+    public function getLastInserted()
     {
-        $query = $this->db->prepare('SELECT date, win, time FROM game WHERE game.id_user = '.$this->id);
-        $query->execute([
-            "nickname" => $this->nickname,
-            "victories" => 0
-        ]);
+        $query = $this->db->query('SELECT * FROM memory.user u ORDER BY id DESC LIMIT 1');
+        $response = $query->fetch(\PDO::FETCH_ASSOC);
+        $user = new User($response);
+        return $user;
+    }
+
+    public function getGames(int $user_id)
+    {
+        $query = $this->db->query('SELECT g.start_date, g.win, g.time_played FROM memory.game g WHERE g.id_user = '.$user_id);
+        $response = $query->fetchAll(\PDO::FETCH_ASSOC);
         $query->closeCursor();
+        return $response;
     }
 
 }
