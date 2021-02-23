@@ -3,8 +3,9 @@ require_once realpath("vendor/autoload.php");
 
 use Memory\Controller\GameController;
 use Memory\Controller\UserController;
+use Memory\Controller\CardController;
 
-if (empty($_GET)) {
+if (empty($_GET) && empty($_POST)) {
     //GameController 
         // Va récup les derniers meilleurs temps
         // Si un utilisateur est connecte : recup ses derniers meilleurs temps
@@ -35,7 +36,11 @@ if (isset($_GET['action']) && $_GET['action'] == "connect") {
         echo json_encode(array('games' => $games));
     }
 }
-if (isset($_GET['action']) && $_GET['action'] == "start-game") {
+if (isset($_GET['action']) && $_GET['action'] == "start_game") {
+    $card_controller = new CardController();
+    $card_controller->getListAction();
+
     //Recupère le User pour le save de la partie
+    //Recupère les cartes en Db
     //Ouverture d'une modale de jeu
 }

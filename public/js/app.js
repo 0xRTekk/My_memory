@@ -1,17 +1,14 @@
 $(window).load(function() {
+    let validated_cards = 0;
+    let flipped_cards = 0;
 
     $('.user-best-game-times').css('display', 'none');
     $('.lobby-wrapper').css('filter', 'blur(.5rem)');
 
     modalSubmit();
-    startGame();
+    flipCard(flipped_cards);
+    console.log(flipped_cards);
 });
-
-function startGame() {
-    $('#start-game-submit').on('click', function(e) {
-        
-    });
-}
 
 function modalSubmit() {
     $('#nickname-modal-submit').on('click', function(e) {
@@ -42,5 +39,13 @@ function modalSubmit() {
                 $('.lobby-wrapper').css('filter', 'unset');
             }
         });
+    })
+}
+
+function flipCard(flipped_cards) {
+    $('.cards.hidden-card').on('click', function(e) {
+        $(this).removeClass('hidden-card').addClass('visible-card');
+        flipped_cards++;
+        let id_visible_card = $(this).find('img').data('id');
     })
 }

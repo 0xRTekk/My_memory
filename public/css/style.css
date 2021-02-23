@@ -25,3 +25,25 @@
 .lobby-wrapper .main-container .general-best-game-times {
     flex-basis: 100%;
 }
+.game-wrapper .main-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.game-wrapper .main-container .cards {
+    margin: 5px;
+    padding: 15px;
+    border: 1px solid #fd7e14;
+    border-radius: 10px;
+}
+.game-wrapper .main-container .cards.hidden-card {
+    background-color: #dedede;
+}
+.game-wrapper .main-container .cards.hidden-card img {
+    visibility: hidden;
+}
+.game-wrapper .main-container .cards.visible-card {
+    background-color: transparent;
+}
+.game-wrapper .main-container .cards.visible-card img {
+    visibility: visible;
+}

@@ -38,7 +38,7 @@ class Card
     {
         $this->name = $name;
     }
-    public function setDescription(bool $description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
