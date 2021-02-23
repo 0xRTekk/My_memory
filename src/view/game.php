@@ -1,13 +1,15 @@
 <?php
 
 $title = "Game";
+$user_id = $_SESSION['user_id'];
+$user_nickname = $_SESSION['nickname'];
+$user_victories = $_SESSION['victories'];
 
 ob_start();?>
 
-<!-- Lobby : listing des meillerus temps -->
 <div class="game-wrapper">
     <h2>A toi de jouer !</h2>
-    <div class="main-container">
+    <div class="main-container" id="game-board" data-id-user="<?=$user_id?>">
         <!-- Plateau de jeu -->
         <?php foreach($deck_cards as $card) {;?>
             <div class="cards hidden-card">
@@ -21,7 +23,6 @@ ob_start();?>
         <!-- Timer --> 
     </div>
 </div>
-<!-- Lobby : listing des meillerus temps -->
 
 <?php $content = ob_get_clean();
 require_once('include/header.php');

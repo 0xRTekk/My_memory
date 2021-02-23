@@ -20,9 +20,13 @@ class UserManager
 
     public function exists(String $nickname)
     {
-        $query = $this->db->query('SELECT id FROM memory.user WHERE nickname = "'.$nickname.'"');
-        $response = $query->fetch(\PDO::FETCH_ASSOC);
-        return $response;
+        $query = $this->db->query('SELECT * FROM memory.user WHERE nickname = "'.$nickname.'"');
+        $data = $query->fetch(\PDO::FETCH_ASSOC);
+        if (!is_array($data)) {
+            return false;
+        }
+        $user = new User($data);
+        return $user;
     }
 
     public function add(String $nickname)
@@ -51,5 +55,4 @@ class UserManager
         $query->closeCursor();
         return $response;
     }
-
 }

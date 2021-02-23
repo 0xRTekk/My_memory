@@ -47,3 +47,10 @@
 .game-wrapper .main-container .cards.visible-card img {
     visibility: visible;
 }
+.game-wrapper .main-container .cards.validated-card {
+    background-color: #198754;
+}
+.game-wrapper .main-container .cards.validated-card img {
+    visibility: visible;
+    opacity: .5;
+}

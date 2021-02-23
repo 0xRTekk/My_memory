@@ -26,4 +26,17 @@ class GameManager
         }
         return $games;
     }
+
+    public function add(int $id_user, float $time, int $win)
+    {
+        $query = $this->db->prepare('INSERT INTO memory.game (start_date, win, time_played, id_user) VALUES (:start_date, :win, :time_played, :id_user)');
+        $query->execute([
+            "start_date" => date("d-m-yy"),
+            "win" => $win,
+            "time_played" => $time,
+            "id_user" => $id_user
+        ]);
+        $query->closeCursor();
+        return true;
+    }
 }

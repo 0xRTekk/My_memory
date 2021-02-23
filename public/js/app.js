@@ -1,13 +1,16 @@
 $(window).load(function() {
-    let validated_cards = 0;
-    let flipped_cards = 0;
+    validated_cards = 0;
+    flipped_cards = 0;
+    nb_total_cards = 0;
+    $.each($('.cards'), function() {
+        nb_total_cards++;
+    });
 
     $('.user-best-game-times').css('display', 'none');
     $('.lobby-wrapper').css('filter', 'blur(.5rem)');
 
     modalSubmit();
-    flipCard(flipped_cards);
-    console.log(flipped_cards);
+    flipCard();
 });
 
 function modalSubmit() {
@@ -42,10 +45,63 @@ function modalSubmit() {
     })
 }
 
-function flipCard(flipped_cards) {
+function flipCard() {
+    let id_flipped_cards = [];
     $('.cards.hidden-card').on('click', function(e) {
         $(this).removeClass('hidden-card').addClass('visible-card');
         flipped_cards++;
-        let id_visible_card = $(this).find('img').data('id');
-    })
+        id_flipped_cards.push($(this).find('img').data('id'));
+        if (flipped_cards == 2) {
+            compareCards(id_flipped_cards);
+            flipped_cards = 0;
+            id_flipped_cards = [];
+        }
+    });
+}
+
+function compareCards(id_flipped_cards) {
+    if (id_flipped_cards[0] != id_flipped_cards[1]) {
+        setTimeout(function() {
+            $.each($('.visible-card'), function() {
+                $(this).removeClass('visible-card').addClass('hidden-card');
+            });
+        }, 300);
+    } else {
+        $.each($('.visible-card'), function() {
+            $(this).removeClass('visible-card').addClass('validated-card');
+            $(this).off('click');
+            validated_cards++;
+            checkValidatedCards();
+        });
+    }
+}
+
+function checkValidatedCards() {
+    console.log(validated_cards);
+    if (validated_cards == nb_total_cards) {
+        alert('Bien jouer ! On va inscire ton score sur le tableau ;)');
+        postGameScore();
+    } else {
+        console.log('Plus que '+(nb_total_cards - validated_cards)+' cartes !');
+    }
+}
+
+function postGameScore() {
+    let win;
+    let time = 66.6;
+    win = time < 5 ? 1 : 0;
+    $.ajax({
+        type: "POST",
+        url: "/my_memory/index.php",
+        data: {
+            action: 'add_score',
+            id_user: $('#game-board').data('id-user'),
+            time: time,
+            win: win
+        },
+        dataType:'JSON', 
+        success: function(response) {
+            console.log('AddScore');
+        }
+    });
 }
