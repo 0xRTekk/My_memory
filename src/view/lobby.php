@@ -4,6 +4,7 @@ $title = "Lobby";
 
 ob_start();?>
 
+<!-- Modale de connexion -->
 <div class="modal-wrapper" id="nickname-modal">
     <div class="container modal-container">
         <div class="modal-header">
@@ -19,7 +20,9 @@ ob_start();?>
         </div>
     </div>
 </div>
+<!-- Fin Modale de connexion -->
 
+<!-- Lobby : listing des meillerus temps -->
 <div class="lobby-wrapper">
     <div class="main-container">
         <article class="general-best-game-times" style="border:1px solid black;">
@@ -62,9 +65,10 @@ ob_start();?>
         </aside>
     </div>
     <div class="second-container">
-        <button type="button" class="btn btn-primary btn-lg" id="start-game-submit">JOUER</button>
+        <a class="btn btn-primary btn-lg" id="start-game-submit" href="/my_memory/index.php?action=start_game" role="button">JOUER</a>
     </div>
 </div>
+<!-- Lobby : listing des meillerus temps -->
 
 <?php $content = ob_get_clean();
 require_once('include/header.php');
