@@ -11,6 +11,7 @@ $(window).load(function() {
 
     modalSubmit();
     flipCard();
+    timer();
 });
 
 function modalSubmit() {
@@ -77,19 +78,24 @@ function compareCards(id_flipped_cards) {
 }
 
 function checkValidatedCards() {
-    console.log(validated_cards);
     if (validated_cards == nb_total_cards) {
-        alert('Bien jouer ! On va inscire ton score sur le tableau ;)');
-        postGameScore();
-    } else {
-        console.log('Plus que '+(nb_total_cards - validated_cards)+' cartes !');
+        alert('Bien jouer ! On va inscire ton score sur le tableau');
+        let total_time = 5.00;
+        let time_left = parseFloat($('#safeTimerDisplay').text().replace(/:\s*/g, "."));
+        let time = total_time - time_left;
+        let win = 1;
+        postGameScore(time, win);
     }
 }
 
-function postGameScore() {
-    let win;
-    let time = 66.6;
-    win = time < 5 ? 1 : 0;
+function timeIsRunningOut() {
+    alert('Argh... Il semblerait que tu n\'ai pas réussi cette partie :( )');
+    let time = parseFloat($('#safeTimerDisplay').text().replace(/:\s*/g, "."));
+    let win = 0;
+    postGameScore(time, win);
+}
+
+function postGameScore(time, win) {
     $.ajax({
         type: "POST",
         url: "/my_memory/index.php",
@@ -101,7 +107,30 @@ function postGameScore() {
         },
         dataType:'JSON', 
         success: function(response) {
-            console.log('AddScore');
+            console.log(response);
+            $(location).attr('href', '/my_memory/index.php');
         }
     });
+}
+
+function timer(){
+    if ($('#timer').length) {
+        let sec = 00;
+        let min = 05;
+        let timer = setInterval(function(){
+            if (sec < 10) {
+                sec = `0${sec}`;
+            }
+            $('#timer').html(min+':'+sec);
+            if (sec == 0) {
+                sec = 59;
+                min--
+            }
+            sec--;
+            if (min < 0) {
+                clearInterval(timer);
+                timeIsRunningOut();
+            }
+        }, 1000);
+    }   
 }

@@ -21,6 +21,7 @@ ob_start();?>
     </div>
     <div class="second-container">
         <!-- Timer --> 
+        <div id="timer"></div>
     </div>
 </div>
 
