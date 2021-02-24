@@ -24,6 +24,18 @@ class GameManager
         while ($data = $query->fetch(\PDO::FETCH_ASSOC)) {
             $games[] = $data;
         }
+        $query->closeCursor();
+        return $games;
+    }
+
+    public function getListByUser(int $user_id)
+    {
+        $games = [];
+        $query = $this->db->query('SELECT g.id, g.start_date, g.win, g.time_played FROM memory.game g WHERE g.id_user = '.$user_id);
+        foreach ($query->fetchAll(\PDO::FETCH_ASSOC) as $data) {
+            $games[] = new Game($data);
+        }
+        $query->closeCursor();
         return $games;
     }
 

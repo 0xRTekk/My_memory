@@ -12,13 +12,6 @@ class UserController
         return $user_manager->exists($nickname);
     }
 
-    public function getUserGamesAction(int $user_id)
-    {
-        $db = new \PDO('mysql:host=localhost;dbname=memory;charset=utf8', 'memory', 'memory');
-        $user_manager = new UserManager($db);
-        return $user_manager->getGames($user_id);
-    }
-
     public function addAction(String $nickname)
     {
         $db = new \PDO('mysql:host=localhost;dbname=memory;charset=utf8', 'memory', 'memory');

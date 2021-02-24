@@ -49,7 +49,8 @@ if (isset($_GET['action']) && $_GET['action'] == "connect") {
         ));
     } else {
         //Si user existe : Recup des dernieres Games du User
-        $games = $user_controller->getUserGamesAction($user->id());
+        $game_controller = new GameController();
+        $games = $game_controller->getListByUserAction($user->id());
 
         //Sauvegarde du User en session
         unset($_SESSION['user_id']);

@@ -47,12 +47,4 @@ class UserManager
         $user = new User($response);
         return $user;
     }
-
-    public function getGames(int $user_id)
-    {
-        $query = $this->db->query('SELECT g.start_date, g.win, g.time_played FROM memory.game g WHERE g.id_user = '.$user_id);
-        $response = $query->fetchAll(\PDO::FETCH_ASSOC);
-        $query->closeCursor();
-        return $response;
-    }
 }

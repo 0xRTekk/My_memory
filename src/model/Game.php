@@ -7,7 +7,7 @@ class Game
     private $start_date;
     private $win;
     private $time_played;
-    private $id_user;
+    private $id_user; //todo : changer id_user par Object USer
 
     public function __construct(array $data)
     {
