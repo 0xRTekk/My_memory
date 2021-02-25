@@ -1,3 +1,33 @@
+/* General */
+h1, h2, h3, h4, h5 {
+  text-align: center;
+}
+
+header h1 {
+  margin: 15px 0;
+  font-size: 5rem;
+  font-weight: 800;
+  background: -webkit-linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn {
+  font-size: 1.3rem;
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-weight: 800;
+  background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  border: transparent;
+}
+.btn:hover {
+  background: #fff;
+  color: #fda085;
+  border: 3px solid #f6d365;
+}
+
 /* Connect modal */
 .modal-wrapper#nickname-modal {
   position: absolute;
@@ -12,36 +42,47 @@
 .modal-wrapper#nickname-modal .container.modal-container {
   position: relative;
   left: -50%;
+  border: 2px solid #f6d365;
   border-radius: 10px;
-  background-color: #dedede;
+  background-color: #fafafa;
 }
 
 /* Lobby */
 .lobby-wrapper .main-container {
   display: flex;
+  margin-bottom: 30px;
 }
 .lobby-wrapper .main-container .general-best-game-times,
 .lobby-wrapper .main-container .user-best-game-times {
   padding: 20px;
   margin: 0 20px;
+  border: 3px solid #f6d365;
+  border-radius: 10px;
 }
 .lobby-wrapper .main-container .general-best-game-times {
   flex-basis: 100%;
 }
 
 /* Game board */
+.game-wrapper #timer {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 10px;
+}
 .game-wrapper .main-container {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 .game-wrapper .main-container .cards {
   margin: 5px;
   padding: 15px;
-  border: 1px solid #fd7e14;
+  border: 2px solid #f6d365;
   border-radius: 10px;
 }
 .game-wrapper .main-container .cards.hidden-card {
-  background-color: #dedede;
+  background-color: #ececec;
 }
 .game-wrapper .main-container .cards.hidden-card img {
   visibility: hidden;
@@ -53,7 +94,7 @@
   visibility: visible;
 }
 .game-wrapper .main-container .cards.validated-card {
-  background-color: #198754;
+  background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
 }
 .game-wrapper .main-container .cards.validated-card img {
   visibility: visible;

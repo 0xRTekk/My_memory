@@ -8,7 +8,7 @@ $user_victories = $_SESSION['victories'];
 ob_start();?>
 
 <div class="game-wrapper">
-    <h2>A toi de jouer !</h2>
+    <div id="timer"></div>
     <div class="main-container" id="game-board" data-id-user="<?=$user_id?>">
         <!-- Plateau de jeu -->
         <?php foreach($deck_cards as $card) {;?>
@@ -18,10 +18,6 @@ ob_start();?>
         <?php
         }
         ?>
-    </div>
-    <div class="second-container">
-        <!-- Timer --> 
-        <div id="timer"></div>
     </div>
 </div>
 

@@ -1,3 +1,31 @@
+/* General */
+h1, h2, h3, h4, h5 {
+    text-align: center;
+}
+header h1 {
+    margin: 15px 0;
+    font-size: 5rem;
+    font-weight: 800;
+    background: -webkit-linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.btn {
+    font-size: 1.3rem;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 800;
+    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    border: transparent;
+    &:hover {
+        background: #fff;
+        color: #fda085;
+        border: 3px solid #f6d365;
+    }
+}
+
 /* Connect modal */
 .modal-wrapper#nickname-modal {
     position: absolute;
@@ -11,18 +39,22 @@
     .container.modal-container {
         position: relative;
         left: -50%;
+        border: 2px solid #f6d365;
         border-radius: 10px;
-        background-color: #dedede;
+        background-color: #fafafa;
     }
 }
 
 /* Lobby */
 .lobby-wrapper .main-container {
     display: flex;
+    margin-bottom: 30px;
     .general-best-game-times,
     .user-best-game-times {
         padding: 20px;
         margin: 0 20px;
+        border: 3px solid #f6d365;
+        border-radius: 10px;
     }
     .general-best-game-times {
         flex-basis: 100%;
@@ -30,31 +62,41 @@
 }
 
 /* Game board */
-.game-wrapper .main-container {
-    display: flex;
-    flex-wrap: wrap;
-    .cards {
-        margin: 5px;
-        padding: 15px;
-        border: 1px solid #fd7e14;
-        border-radius: 10px;
-        &.hidden-card {
-            background-color: #dedede;
-            img {
-                visibility: hidden;
+.game-wrapper {
+    #timer {
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 800;
+        letter-spacing: 10px;
+    }
+    .main-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        .cards {
+            margin: 5px;
+            padding: 15px;
+            border: 2px solid #f6d365;
+            border-radius: 10px;
+            &.hidden-card {
+                background-color: #ececec;
+                img {
+                    visibility: hidden;
+                }
             }
-        }
-        &.visible-card {
-            background-color: transparent;
-            img {
-                visibility: visible;
+            &.visible-card {
+                background-color: transparent;
+                img {
+                    visibility: visible;
+                }
             }
-        }
-        &.validated-card {
-            background-color: #198754;
-            img {
-                visibility: visible;
-                opacity: .5;
+            &.validated-card {
+                // background-color: #198754;
+                background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+                img {
+                    visibility: visible;
+                    opacity: .5;
+                }
             }
         }
     }

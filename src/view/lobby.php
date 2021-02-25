@@ -25,7 +25,7 @@ ob_start();?>
 <!-- Lobby : listing des meillerus temps -->
 <div class="lobby-wrapper">
     <div class="main-container">
-        <article class="general-best-game-times" style="border:1px solid black;">
+        <article class="general-best-game-times">
             <h2>Les meilleurs temps de tous les temps !</h2>
             <table class="table table-striped table-hover">
                 <thead>
@@ -49,13 +49,13 @@ ob_start();?>
             </table>
         </article>
 
-        <aside class="user-best-game-times" style="border:1px solid red;">
-            <h2>Tes meilleurs temps (de tous les temps)</h2>
+        <aside class="user-best-game-times">
+            <h2>Tes meilleurs temps</h2>
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Temps</th>
                         <th scope="col">Date</th>
+                        <th scope="col">Temps</th>
                     </tr>
                 </thead>
                 <tbody>
