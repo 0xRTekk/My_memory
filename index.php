@@ -71,10 +71,11 @@ if (isset($_GET['action']) && $_GET['action'] == "start_game") {
 }
 if (isset($_POST['action']) && $_POST['action'] == "add_score") {
     // Enregistrement de la partie en DB
-    $time = $_POST['time'];
+    $time = (float)$_POST['time'];
     $id_user = $_POST['id_user'];
     $win = $_POST['win'];
     
     $game_controller = new GameController();
     $game_controller->addAction($id_user, $time, $win);
+    echo json_encode('GG à toi !');
 }

@@ -79,10 +79,9 @@ function compareCards(id_flipped_cards) {
 
 function checkValidatedCards() {
     if (validated_cards == nb_total_cards) {
-        alert('Bien jouer ! On va inscire ton score sur le tableau');
-        let total_time = 5.00;
-        let time_left = parseFloat($('#safeTimerDisplay').text().replace(/:\s*/g, "."));
-        let time = total_time - time_left;
+        let total_time = 5;
+        let time_left = parseFloat($('#timer').text().replace(/:\s*/g, "."));
+        let time = (total_time - time_left)*60;
         let win = 1;
         postGameScore(time, win);
     }
@@ -90,7 +89,7 @@ function checkValidatedCards() {
 
 function timeIsRunningOut() {
     alert('Argh... Il semblerait que tu n\'ai pas réussi cette partie :( )');
-    let time = parseFloat($('#safeTimerDisplay').text().replace(/:\s*/g, "."));
+    let time = parseFloat($('#timer').text().replace(/:\s*/g, "."));
     let win = 0;
     postGameScore(time, win);
 }
@@ -107,8 +106,8 @@ function postGameScore(time, win) {
         },
         dataType:'JSON', 
         success: function(response) {
-            console.log(response);
-            $(location).attr('href', '/my_memory/index.php');
+            alert(response);
+            $(location).attr('href',"/my_memory/index.php");
         }
     });
 }
