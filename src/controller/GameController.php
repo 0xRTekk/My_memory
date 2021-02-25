@@ -5,6 +5,11 @@ use Memory\Model\Manager\GameManager;
 
 class GameController 
 {
+    /**
+     * Instance d'une connexion PDO envoyee au manager
+     * Recuperation des parties
+     * Appel de la vue pour affichage dans lobby
+     */
     public function getListAction()
     {
         $db = new \PDO('mysql:host=localhost;dbname=memory;charset=utf8', 'memory', 'memory');
@@ -13,6 +18,13 @@ class GameController
         require_once(__DIR__ . '/../view/lobby.php');
     }
 
+    /**
+     * @param int $user_id
+     * Instance d'une connexion PDO envoyee au manager
+     * Recuperation et traitement des parties d'un joueur
+     * pour les renvoyer
+     * @return array $games_array
+     */
     public function getListByUserAction(int $user_id)
     {
         $games_array = [];
@@ -32,6 +44,15 @@ class GameController
         return $games_array;
     }
 
+    /**
+     * @param int $user_id
+     * @param float $time
+     * @param int $win
+     * Instance d'une connexion PDO envoyee au manager
+     * Appel de la methode de sauvegarde de partie du managger
+     * renvoi un booleen
+     * @return bool 
+     */
     public function addAction(int $is_user, float $time, int $win)
     {
         $db = new \PDO('mysql:host=localhost;dbname=memory;charset=utf8', 'memory', 'memory');

@@ -6,18 +6,27 @@ use Memory\Model\Card;
 
 class CardManager 
 {
+    /**
+     * @var \PDO pdo connection
+     */
     private $db;
 
+    /**
+     * @param \PDO $db
+     */
     public function __construct($db)
     {
         $this->setDb($db);
     }
 
-    public function setDb(\PDO $db)
-    {
-        $this->db = $db;
-    }
+    //Setters
+    public function setDb(\PDO $db) { $this->db = $db; }
 
+    /**
+     * Recupère la liste des cartes depuis la base de données
+     * Retourne un tableau d'objets Card
+     * @return Array $cards
+     */
     public function getList()
     {
         $cards = [];

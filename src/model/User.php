@@ -18,12 +18,15 @@ class User
     {
         foreach ($data as $key => $value) {
             // On récupère le nom du setter correspondant à l'attribut.
-            $method = 'set'.ucfirst($key);
+            // On passe chaque première lettre en majuscule
+            // On retire les underscores
+            $key_transformed = ucwords($key, "_");
+            $key_transformed = str_replace("_", "", $key_transformed);
+            $method = 'set'.ucfirst($key_transformed);
             // Si le setter correspondant existe.
-            if (method_exists($this, $method))
-            {
-            // On appelle le setter.
-            $this->$method($value);
+            if (method_exists($this, $method)) {
+                // On appelle le setter.
+                $this->$method($value);
             }
         }
     }

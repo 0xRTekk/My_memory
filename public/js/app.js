@@ -1,4 +1,5 @@
 $(window).load(function() {
+    // Init variables
     validated_cards = 0;
     flipped_cards = 0;
     nb_total_cards = 0;
@@ -6,18 +7,24 @@ $(window).load(function() {
         nb_total_cards++;
     });
 
+    // Permet la mise en avant de la modale de connexion
     $('.user-best-game-times').css('display', 'none');
     $('.lobby-wrapper').css('filter', 'blur(.5rem)');
 
+    // Appel des fonctions
     modalSubmit();
     flipCard();
     timer();
 });
 
+// Traitement à l'envoi du formulaire de connexion
 function modalSubmit() {
     $('#nickname-modal-submit').on('click', function(e) {
         e.preventDefault();
         let input_nickname = $('#input-nickname').val();
+        //Req AJAX : permet l'appel d'un controller PHP
+        // Traite les donnees retournees sans avoir a recharger la page
+        // => traitement asynchrone
         $.ajax({
             type: "GET",
             url: "/my_memory/index.php",
@@ -27,6 +34,7 @@ function modalSubmit() {
             },
             dataType:'JSON', 
             success: function(response) {
+                //Si user existe : affichage de ses temps de jeu
                 if (response.games) {
                     $('.general-best-game-times').css('flex-basis', '90%');
                     $('.user-best-game-times').css('display', 'block');
@@ -46,6 +54,7 @@ function modalSubmit() {
     })
 }
 
+// Retournement cartes
 function flipCard() {
     let id_flipped_cards = [];
     $('.cards.hidden-card').on('click', function(e) {
@@ -60,6 +69,7 @@ function flipCard() {
     });
 }
 
+// Comparaison de 2 cartes
 function compareCards(id_flipped_cards) {
     if (id_flipped_cards[0] != id_flipped_cards[1]) {
         setTimeout(function() {
@@ -77,6 +87,7 @@ function compareCards(id_flipped_cards) {
     }
 }
 
+// Check si toutes cartes sont trouvees
 function checkValidatedCards() {
     if (validated_cards == nb_total_cards) {
         let total_time = 5;
@@ -87,6 +98,7 @@ function checkValidatedCards() {
     }
 }
 
+// Traitement quand timer à 0
 function timeIsRunningOut() {
     alert('Argh... Il semblerait que tu n\'ai pas réussi cette partie :( )');
     let time = parseFloat($('#timer').text().replace(/:\s*/g, "."));
@@ -94,6 +106,7 @@ function timeIsRunningOut() {
     postGameScore(time, win);
 }
 
+//Req AJAX pour sauvegarder la partie en base de donnees
 function postGameScore(time, win) {
     $.ajax({
         type: "POST",
@@ -107,16 +120,19 @@ function postGameScore(time, win) {
         dataType:'JSON', 
         success: function(response) {
             alert(response);
+            // Redirection sur le lobby
             $(location).attr('href',"/my_memory/index.php");
         }
     });
 }
 
+// Gestion du timer 
 function timer(){
     if ($('#timer').length) {
         let sec = 00;
         let min = 05;
         let timer = setInterval(function(){
+            // Formattage des secondes
             if (sec < 10) {
                 sec = `0${sec}`;
             }
