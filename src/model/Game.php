@@ -1,13 +1,15 @@
 <?php
 namespace Memory\Model;
 
+use Memory\Controller\UserController;
+
 class Game
 {
     private $id;
     private $start_date;
     private $win;
     private $time_played;
-    private $id_user; //todo : changer id_user par Object USer
+    private $user;
 
     public function __construct(array $data)
     {
@@ -50,7 +52,11 @@ class Game
     }
     public function setIdUser(int $id_user)
     {
-        $this->id_user = $id_user;
+        // Instance de User comme propriete 
+        // Note perso : expliquer les bases relationnelles et les cles etrangeres : MCD
+        // Note perso : Expliquer en mode objet : UML
+        $user_controller = new UserController();
+        $this->user = $user_controller->getByIdAction($id_user);
     }
 
     //Getters
@@ -58,7 +64,7 @@ class Game
     public function startDate() { return $this->start_date; }
     public function win() { return $this->win; }
     public function timePlayed() { return $this->time_played; }
-    public function idUser() { return $this->id_user; }
+    public function user() { return $this->user; }
 }
 
 ?>

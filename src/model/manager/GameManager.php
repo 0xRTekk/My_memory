@@ -23,20 +23,18 @@ class GameManager
 
     /**
      * Recupère la liste des parties en base de données
-     * avec le pseudo du joueur associé
+     * avec l'id du joueur associé
      * @return Array $games
      */
     public function getList()
     {
         $games = [];
-        // Jointure entre 2 tables grace a un identifiant en commen : id_user
-        $query = $this->db->query('SELECT g.id, g.start_date, g.time_played, u.nickname 
+        $query = $this->db->query('SELECT g.id, g.start_date, g.time_played, g.id_user 
             FROM memory.game g 
-            INNER JOIN memory.user u ON u.id = g.id_user 
             WHERE g.win = 1
             ORDER BY g.time_played LIMIT 10');
         while ($data = $query->fetch(\PDO::FETCH_ASSOC)) {
-            $games[] = $data;
+            $games[] = new Game($data);
         }
         $query->closeCursor();
         return $games;

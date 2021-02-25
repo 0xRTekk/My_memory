@@ -23,6 +23,21 @@ class UserManager
     public function setDb(\PDO $db) { $this->db = $db; }
 
     /**
+     * @param int $id_user
+     * Retourne un User construit depuis son id
+     */
+    public function getById(int $id_user)
+    {
+        $query = $this->db->query('SELECT * FROM memory.user WHERE id = '.$id_user);
+        $data = $query->fetch(\PDO::FETCH_ASSOC);
+        if (!is_array($data)) {
+            return false;
+        }
+        $user = new User($data);
+        return $user;
+    }
+
+    /**
      * @param Srting $nickname
      * Check l'existance du joueur en base de données
      */

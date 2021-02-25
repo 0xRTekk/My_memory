@@ -39,10 +39,10 @@ ob_start();?>
                 <tbody>
                     <?php foreach($game_list as $game) { ?>
                         <tr>
-                            <th scope="row"><?=$game['id'];?></td>
-                            <td><?=$game['nickname'];?></td>
-                            <td><?=$game['time_played'];?></td>
-                            <td><?=$game['start_date'];?></td>
+                            <th scope="row"><?=$game->id();?></td>
+                            <td><?=$game->user()->nickname();?></td>
+                            <td><?=$game->timePlayed();?></td>
+                            <td><?=$game->startDate();?></td>
                         </tr>
                     <?php } ?>              
                 </tbody>
