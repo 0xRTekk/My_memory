@@ -71,6 +71,5 @@ ob_start();?>
 <!-- Lobby : listing des meillerus temps -->
 
 <?php $content = ob_get_clean();
-require_once('include/header.php');
-// require_once(__DIR__.'/include/footer.php');
+require_once('include/page.php');
 ?>
