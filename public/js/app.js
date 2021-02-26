@@ -27,14 +27,13 @@ function modalSubmit() {
         // => traitement asynchrone
         $.ajax({
             type: "GET",
-            url: "/index.php",
+            url: "/my_memory/index.php",
             data: {
                 action: 'connect',
                 input_nickname: input_nickname
             },
-            dataType:'JSON', 
+            dataType:'JSON',
             success: function(response) {
-                console.log(response);
                 //Si user existe : affichage de ses temps de jeu
                 if (response.games) {
                     $('.general-best-game-times').css('flex-basis', '90%');
@@ -111,18 +110,18 @@ function timeIsRunningOut() {
 function postGameScore(time, win) {
     $.ajax({
         type: "POST",
-        url: "/index.php",
+        url: "/my_memory/index.php",
         data: {
             action: 'add_score',
             id_user: $('#game-board').data('id-user'),
             time: time,
             win: win
         },
-        dataType:'JSON', 
+        dataType:'JSON',
         success: function(response) {
             alert(response);
             // Redirection sur le lobby
-            $(location).attr('href',"/index.php");
+            $(location).attr('href',"/my_memory/index.php");
         }
     });
 }

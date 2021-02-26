@@ -65,7 +65,7 @@ ob_start();?>
         </aside>
     </div>
     <div class="second-container">
-        <a class="btn btn-primary btn-lg" id="start-game-submit" href="/index.php?action=start_game" role="button">JOUER</a>
+        <a class="btn btn-primary btn-lg" id="start-game-submit" href="/my_memory/index.php?action=start_game" role="button">JOUER</a>
     </div>
 </div>
 <!-- Lobby : listing des meillerus temps -->

@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link href="/public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/public/css/style.css" rel="stylesheet" />
+    <link href="/my_memory/public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/my_memory/public/css/style.css" rel="stylesheet" />
     <title>Memory - <?= $title ?></title>
 </head>
 <body>
@@ -20,7 +20,7 @@
     <script type = "text/javascript"
     src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
     </script>
-    <script src="/public/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/public/js/app.js"></script>
+    <script src="/my_memory/public/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/my_memory/public/js/app.js"></script>
 </body>
 </html>
