@@ -7,6 +7,15 @@ USE `memory`;
 -- --------------------------------------------------------
 
 --
+-- Creation du UserDb
+--
+CREATE USER IF NOT EXISTS 'memory'@'localhost' IDENTIFIED BY 'memory';
+GRANT ALL PRIVILEGES ON memory.* TO 'memory'@'localhost';
+
+-- --------------------------------------------------------
+
+
+--
 -- Structure de la table `card`
 --
 
