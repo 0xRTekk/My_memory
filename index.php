@@ -77,5 +77,8 @@ if (isset($_POST['action']) && $_POST['action'] == "add_score") {
     
     $game_controller = new GameController();
     $game_controller->addAction($id_user, $time, $win);
-    echo json_encode('GG à toi !');
+    $output = "GG à toi ! 
+    Pour reveni à la connexion c\'est par ici que ça se passe :) 
+    Essaye de faire une nouvelle partie avec un noueau nom ;)";
+    echo json_encode($output);
 }
