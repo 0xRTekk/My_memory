@@ -7,7 +7,6 @@ class User
     //Properties
     private $id;
     private $nickname;
-    private $victories;
 
     public function __construct(array $data)
     {
@@ -40,14 +39,9 @@ class User
     {
         $this->nickname = $nickname;
     }
-    public function setVictories($victories)
-    {
-        $this->victories = $victories;
-    }
 
     //Getters
     public function id() { return $this->id; }
     public function nickname() { return $this->nickname; }
-    public function victories() { return $this->victories; }
 }
 ?>

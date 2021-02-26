@@ -3,7 +3,6 @@
 $title = "Game";
 $user_id = $_SESSION['user_id'];
 $user_nickname = $_SESSION['nickname'];
-$user_victories = $_SESSION['victories'];
 
 ob_start();?>
 

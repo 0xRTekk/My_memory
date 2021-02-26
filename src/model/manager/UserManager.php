@@ -60,12 +60,11 @@ class UserManager
     public function add(String $nickname)
     {
         // Préparation de la requete
-        $query = $this->db->prepare('INSERT INTO user (nickname, victories) 
-            VALUES (:nickname, :victories)');
+        $query = $this->db->prepare('INSERT INTO user (nickname) 
+            VALUES (:nickname)');
         // Execution de la requete
         $query->execute([
-            "nickname" => $nickname,
-            "victories" => 0
+            "nickname" => $nickname
         ]);
         // Ferme le curseur, permettant à la requête d'être de nouveau exécutée
         $query->closeCursor();
