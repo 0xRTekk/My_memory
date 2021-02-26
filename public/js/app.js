@@ -92,7 +92,7 @@ function checkValidatedCards() {
     if (validated_cards == nb_total_cards) {
         let total_time = 5;
         let time_left = parseFloat($('#timer').text().replace(/:\s*/g, "."));
-        let time = (total_time - time_left)*60;
+        let time = total_time - time_left;
         let win = 1;
         postGameScore(time, win);
     }
