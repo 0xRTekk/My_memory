@@ -1,0 +1,27 @@
+version: "3.2"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./php_apache/dockerfile
+    volumes:
+      - "./../:/var/www/html"
+    links:
+      - mysql
+    ports:
+      - "8080:80"
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - "./data/:/var/lib/mysql"
+      - ./init/01.sql:/docker-entrypoint-initdb.d/01.sql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=memory
+      - MYSQL_USER=memory
+      - MYSQL_PASSWORD=memory
