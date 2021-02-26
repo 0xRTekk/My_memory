@@ -38,14 +38,11 @@ if (isset($_GET['action']) && $_GET['action'] == "connect") {
         $_SESSION['user_id'] = (int)$user_created->id();
         unset($_SESSION['nickname']);
         $_SESSION['nickname'] = $user_created->nickname();
-        unset($_SESSION['victories']);
-        $_SESSION['victories'] = (int)$user_created->victories();
 
         // Reponse JSON
         echo json_encode(array(
             'user_id' => (int)$user_created->id(),
-            'nickname' => $user_created->nickname(),
-            'victories' => (int)$user_created->victories()
+            'nickname' => $user_created->nickname()
         ));
     } else {
         //Si user existe : Recup des dernieres Games du User
@@ -57,8 +54,6 @@ if (isset($_GET['action']) && $_GET['action'] == "connect") {
         $_SESSION['user_id'] = (int)$user->id();
         unset($_SESSION['nickname']);
         $_SESSION['nickname'] = $user->nickname();
-        unset($_SESSION['victories']);
-        $_SESSION['victories'] = (int)$user->victories();
         
         // Reponse JSON
         echo json_encode(array('games' => $games));
