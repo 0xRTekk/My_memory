@@ -12,7 +12,7 @@ ob_start();?>
         <!-- Plateau de jeu -->
         <?php foreach($deck_cards as $card) {;?>
             <div class="cards hidden-card">
-                <img src="/my_memory/public/img/<?= $card->id();?>.png" data-id="<?= $card->id();?>" alt="<?= $card->description();?>">
+                <img src="/public/img/<?= $card->id();?>.png" data-id="<?= $card->id();?>" alt="<?= $card->description();?>">
             </div>
         <?php
         }

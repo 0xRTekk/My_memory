@@ -12,7 +12,7 @@ class CardController
      */
     public function getListAction()
     {
-        $db = new \PDO('mysql:host=localhost;dbname=memory;charset=utf8', 'root', '');
+        $db = new \PDO('mysql:host=mysql;dbname=memory;charset=utf8', 'memory', 'memory');
         $card_manager = new CardManager($db);
         $deck_cards = $this->prepareDeck($card_manager->getList());
         require_once(__DIR__ . '/../view/game.php');

@@ -5,21 +5,24 @@ services:
       context: .
       dockerfile: ./php_apache/dockerfile
     volumes:
-      - "./../:/var/www/html"
+      - ./..:/var/www/html
     links:
       - mysql
     ports:
       - "8080:80"
 
+  composer_installation:
+    container_name: composer_installation
+    image: composer
+    volumes:
+      - ./..:/app
+    command: bash -c "composer dump-autoload && composer install --ignore-platform-reqs"
+
   mysql:
     image: mysql:5.7
-    volumes:
-      - "./data/:/var/lib/mysql"
-      - ./init/01.sql:/docker-entrypoint-initdb.d/01.sql
+  #  volumes:
+ #     - ./data/:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    ports:
-      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=memory

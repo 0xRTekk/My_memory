@@ -1,8 +1,18 @@
 FROM php:7.0-apache
 
+#RUN apt-get update
+#RUN apt-get upgrade -y
+#RUN docker-php-ext-install pdo pdo_mysql mysqli
+#RUN a2enmod rewrite
+
+# Install dependencies
 RUN apt-get update
-RUN apt-get upgrade -y
+RUN apt-get update
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN docker-php-ext-install pdo pdo_mysql mysqli
 RUN a2enmod rewrite
 
-COPY . /app
+COPY . /var/www/html/
+
+WORKDIR /app/
+
