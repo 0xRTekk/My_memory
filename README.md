@@ -25,8 +25,10 @@ Se placer dans le dossier docker et lancer la commande
 ```bash
 docker-compose up -d
 ```
-Attendre que le téléchargement des images et la fin des commandes composer install et composer dump-autoload
-Il faut ensuite se connecter au container mysql et éxecuter 
+Attendre que le téléchargement des images et la fin des commandes composer install et composer dump-autoload.
+La base de données sera construite et rempli avec un jeu de test. 
+
+
 ## Amélioration en cours 
 
 Un environnement docker-compose est mis à disposition.  
